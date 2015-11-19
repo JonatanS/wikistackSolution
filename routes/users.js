@@ -20,10 +20,12 @@ router.get('/', function (req, res, next) {
 // /users/(dynamicvalue)
 router.get('/:userId', function (req, res, next) {
 
-    var findUser = User.findById(req.params.userId).exec();
+    var findUser = User.findById(req.params.userId).exec(); //findById returns single object, not array
     var findPages = Page.find({ author: req.params.userId }).exec();
 
-    Promise.all([findUser, findPages])
+    //once all promises have been resolved
+    //Promise.all returns new array, which we pass as info:
+    Promise.all([findUser, findPages])  
         .then(function (info) {
             var foundUser = info[0];
             var foundPages = info[1];

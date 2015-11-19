@@ -1,9 +1,11 @@
 var mongoose = require('mongoose');
 var marked = require('marked');
-mongoose.connect('mongodb://localhost/wikistack');
+mongoose.connect('mongodb://localhost/wikistack');  
 
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'mongodb connection error: '));
+db.on('error', console.error.bind(console, 'mongodb connection error: '));  //log error on unsucessful connection
+
+db.on('open', function (){ console.log("Succesfully connected to DB");});
 
 var pageSchema = new mongoose.Schema({
     title: {
@@ -35,7 +37,8 @@ var pageSchema = new mongoose.Schema({
     }
 });
 
-//virtual property route (it's not a function!)
+//virtual property route (it's not a function!) 
+//virtuals can be used for settign and getting schema properties.
 pageSchema.virtual('route').get(function () {
     return '/wiki/' + this.urlTitle;
 });
@@ -107,7 +110,8 @@ userSchema.statics.findOrCreate = function (userInfo) {
 
 };
 
-//in mongoose, we now have two models: Page, User
+//in mongoose, we now create two models: Page, User.
+//the DB collections will be called pages and users
 var Page = mongoose.model('Page', pageSchema);
 var User = mongoose.model('User', userSchema);
 

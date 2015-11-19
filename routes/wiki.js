@@ -13,7 +13,10 @@ router.get('/', function (req, res, next) {
         .then(function (pages) {
             res.render('index', { pages: pages });
         })
-        .then(null, next);  //call error handler
+        //call error handling middleware in app.js
+        //next is the second argument, so it is only called in case of error.
+        .then(null, next);  
+
 
 });
 
@@ -62,7 +65,9 @@ router.get('/search', function (req, res, next) {
 router.get('/:urlTitle', function (req, res, next) {
 
     Page.findOne({ urlTitle: req.params.urlTitle })
-        .populate('author')
+        //author is ID. // Mongoose's populate() will populate author data (email, name) 
+        //for page.author from users collection
+        .populate('author') 
         .then(function (page) {
             res.render('wikipage', { page: page });
         })

@@ -12,7 +12,7 @@
     </li>
     {% endfor %}
 </ul>
-<hr/>
+<hr/><!--autoescape is a twig setting to not let users provide our model with HTML. In this case we need to turn it off for markdown-->
 <div class="page-body">{% autoescape false %}{{ page.renderedContent }}{% endautoescape %}</div>
 <hr/>
 <a href="PLACEHOLDER_URL_TITLE/edit" class="btn btn-primary">edit this page</a>

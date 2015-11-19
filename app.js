@@ -27,6 +27,7 @@ app.get('/', function (req, res) {
 });
 
 //error handler in app.js (4 arguments!)
+//.then(null, next) is called in all routes!
 app.use(function (err, req, res, next) {
     console.error(err);
     res.status(500).send(err.message);
