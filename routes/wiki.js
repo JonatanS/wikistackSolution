@@ -1,18 +1,19 @@
+//  /wiki sub router, routed from app.js
 var express = require('express');
 var router = express.Router();
-var models = require('../models');
+var models = require('../models');  //finds the models from ../models/index.js!
 var Page = models.Page;
 var User = models.User;
 module.exports = router;
 
 // /wiki
 router.get('/', function (req, res, next) {
-
+    ///req.method === "GET" && req.url === "/wiki/"
     Page.find({}).exec()
         .then(function (pages) {
             res.render('index', { pages: pages });
         })
-        .then(null, next);
+        .then(null, next);  //call error handler
 
 });
 
