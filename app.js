@@ -14,7 +14,7 @@ app.engine('html', swig.renderFile);
 swig.setDefaults({ cache: false });
 
 app.use(morgan('dev'));
-app.use(express.static(path.join(__dirname, './public')));
+app.use(express.static(path.join(__dirname, './public')));	//__dirname = path of current file
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 

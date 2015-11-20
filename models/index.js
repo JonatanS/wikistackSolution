@@ -107,7 +107,6 @@ userSchema.statics.findOrCreate = function (userInfo) {
                 return user;
             }
         });
-
 };
 
 //in mongoose, we now create two models: Page, User.

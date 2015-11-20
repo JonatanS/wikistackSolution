@@ -77,7 +77,7 @@ router.get('/:urlTitle', function (req, res, next) {
 
 // /wiki/(dynamic value)
 router.get('/:urlTitle/similar', function (req, res, next) {
-
+    //if number came is as param, we'd use parseInt
     Page.findOne({ urlTitle: req.params.urlTitle })
         .then(function (page) {
             return page.findSimilar();
